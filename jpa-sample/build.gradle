@@ -50,6 +50,7 @@ querydsl{
 
 sourceSets{
 	main.java.srcDir querydslDir
+	// main.java.srcDir  "$buildDir/generated/querydsl"
 }
 
 compileQuerydsl{
