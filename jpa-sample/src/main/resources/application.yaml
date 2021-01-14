@@ -5,7 +5,7 @@ spring:
     password: SUCCESS
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    # database: mysql
+    database: mysql
     # generate-ddl: true
     # open-in-view: false
     # show-sql: true
