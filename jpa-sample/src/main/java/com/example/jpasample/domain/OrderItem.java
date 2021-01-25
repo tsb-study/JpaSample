@@ -24,6 +24,10 @@ public class OrderItem {
   @JoinColumn(name = "ORDER_ID")
   private Order order;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "ITEM_ID")
+  private Item item;
+
   private int orderPrice;
 
   private int count;
