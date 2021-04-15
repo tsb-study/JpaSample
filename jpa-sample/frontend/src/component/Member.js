@@ -1,34 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Table } from 'react-bootstrap';
 
 const Member = () => {
-	const [data, setData] = useState('');
-	const getApi = () => {
-		axios.get('/api/v1/member').then((res) => {
-			setData(res.data);
-		});
-	};
+	const [data, setData] = useState([]);
 
-	useEffect(() => {
-		getApi();
-	}, [data]);
-
+	useEffect(async () => {
+		try {
+			const result = await axios.get('/api/v1/member');
+			setData(result.data);
+		} catch (e) {
+			console.log(e);
+		}
+	}, []);
 	return (
 		<>
-			회원목록
-			<p />
-			<table>
-				<tr>
-					<th>id</th>
-					<th>name</th>
-				</tr>
-				{data.map(({ id, name }) => (
+			<Table striped bordered hover>
+				<thead>
 					<tr>
-						<td>{id}</td>
-						<td>{name}</td>
+						<th>id</th>
+						<th>name</th>
 					</tr>
-				))}
-			</table>
+				</thead>
+				<tbody>
+					{data.map(({ id, name }) => (
+						<tr key={id + name}>
+							<td>{id}</td>
+							<td>{name}</td>
+						</tr>
+					))}
+				</tbody>
+			</Table>
 		</>
 	);
 };
